@@ -76,6 +76,41 @@ router.get('/deliveries', (req, res, next) => {
     }
   });
 }); // end of router.get(/deliveriess)
+
+// Add a fruit
+router.post('/deliveries', (req, res, next) => {
+  if (isDev) {
+    console.log('isDev');
+    AWS.config.update(config.aws_local_config);
+  } else {
+    console.log('isProd');
+    AWS.config.update(config.aws_remote_config);
+  }
+    const delivery = req.body;
+    // Not actually unique and can create problems.
+    //const id = uuidv4();
+    const docClient = new AWS.DynamoDB.DocumentClient();
+    const params = {
+      TableName: config.aws_table_name,
+      Item: delivery
+    };
+    docClient.put(params, function(err, data) {
+      if (err) {
+        res.send({
+          success: false,
+          message: 'Error: Server error'
+        });
+      } else {
+        console.log('data', data);
+        const { Items } = data;
+        res.send({
+          success: true,
+          message: 'Added fruit',
+          deliveries: Items
+        });
+      }
+    });
+  });
 // UPDATE a fruit
 router.put('/deliveries/:id', (req, res, next) => {
   if (isDev) {
