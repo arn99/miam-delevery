@@ -76,8 +76,8 @@ router.get('/deliveries', (req, res, next) => {
     }
   });
 }); // end of router.get(/deliveriess)
-// Add a fruit
-router.post('/deliveries', (req, res, next) => {
+// UPDATE a fruit
+router.put('/deliveries/:id', (req, res, next) => {
   if (isDev) {
     console.log('isDev');
     AWS.config.update(config.aws_local_config);
@@ -85,15 +85,22 @@ router.post('/deliveries', (req, res, next) => {
     console.log('isProd');
     AWS.config.update(config.aws_remote_config);
   }
-    const deliveries = req.body;
+    const state = req.body.etat;
+    const key = req.params.id;
     // Not actually unique and can create problems.
     //const id = uuidv4();
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
       TableName: config.aws_table_name,
-      Item: deliveries
+      Key: {"id": key.toString()},
+      UpdateExpression: "set etat = :s",
+      ExpressionAttributeValues:{
+        ":s":state.toString(),
+      },
+      
+    ReturnValues:"UPDATED_NEW"
     };
-    docClient.put(params, function(err, data) {
+    docClient.update(params, function(err, data) {
       if (err) {
         res.send({
           success: false,
@@ -104,10 +111,10 @@ router.post('/deliveries', (req, res, next) => {
         const { Items } = data;
         res.send({
           success: true,
-          message: 'Added fruit',
+          message: 'UpdateItem succeeded',
           deliveries: Items
         });
       }
     });
   });
-  module.exports = router;
+module.exports = router;
