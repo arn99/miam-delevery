@@ -1,0 +1,91 @@
+{
+	"variables": [],
+	"info": {
+		"name": "delivery",
+		"_postman_id": "86669c2b-a03b-b2f4-3945-b7db077bded6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries",
+			"request": {
+				"url": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n            \"deux\": \"yoo\",\n            \"un\": \"try\",\n            \"id\": \"ezrz452\",\n            \"trois\": {\n                \"yoo\": \"ca marche\"\n            }\n            ,\n            \"etat\":\"waiting\"\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries",
+			"request": {
+				"url": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n            \"deux\": \"yoo\",\n            \"un\": \"try\",\n            \"id\": \"ezrz452\",\n            \"trois\": {\n                \"yoo\": \"ca marche\"\n            }\n            ,\n            \"etat\":\"waiting\"\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries",
+			"request": {
+				"url": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries/{{id}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n            \"deux\": \"yoo\",\n            \"un\": \"try\",\n            \"id\": \"ezrz452\",\n            \"trois\": {\n                \"yoo\": \"ca marche\"\n            }\n            ,\n            \"etat\":\"waiting\"\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries",
+			"request": {
+				"url": "http://delivery-env.eba-em2tpybp.us-east-1.elasticbeanstalk.com/api/deliveries/{{id}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n            \n            \"etat\":\"finish\"\n }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
